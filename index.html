@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Consuming-API</title>
+</head>
+<body>
+  <main></main>
+</body>
+<script>
+  async function getContent() {
+    try {
+      const response = await fetch('http://localhost:8000/')
+      //console.log(response) //dentro está o body, corpo da resposta.
+      const data = await response.json() //pq usa o json()???? Espera o response transformar em json e daí bota no data.
+      //console.log(data)
+      show(data)
+
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
+  getContent()
+
+  function show(users) {
+    let output = ''
+
+    for (let user of users) {
+      output += `<li>${user.name}</li>`
+    }
+
+    document.querySelector('main').innerHTML = output
+  }
+
+</script>
+</html>
